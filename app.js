@@ -49,7 +49,13 @@ function compareArraysOfArray(parts) {
         for (var b = 0; b < parts[a].length; b++) {
             for (var c = 0; c < parts.length; c++) {
                 for (var d = 0; d < parts[c].length; d++) {
-                    console.log("Powónujemy " + parts[a][b] + " do " + parts[c][d]);
+                    // console.log("Powónujemy " + parts[a][b] + " do " + parts[c][d]);
+                    if (a !== c && a < c) {
+                        // console.log("Powónujemy " + parts[a][b] + " do " + parts[c][d]);
+                        // if (parts[a][b] === parts[c][d]) {
+                        //     console.log("Nakłada się tabela " + a + " element " + b + " z tabelą " + c + " elementem " + d);
+                        // }
+                    }
                 }
             }
         }
