@@ -27,39 +27,33 @@ function objectsToArrays(object) {
         }
         object[i] = newArray;
     };
-}
+};
 
 objectsToArrays(parts);
 
-
-//Compare length of one array with length of others
-// for (var k = 0; k < parts.length-1; k++) {
-//     for (var m = 0; m < parts.length; m++) {
-//         if (k !== m && k < m) {
-//             console.log("Długość " + k + " to: " + parts[k].length + ", a długość następnego, czyli " + m + " to " + parts[m].length);
-//         }
-//     }
-// };
-
-
 // Compare content of array with kontet of next array
+var overlap = [];
 function compareArraysOfArray(parts) {
     var counter = 1;
     for (var a = 0; a < parts.length; a++) {
+        var row = [];
         for (var b = 0; b < parts[a].length; b++) {
             for (var c = 0; c < parts.length; c++) {
                 for (var d = 0; d < parts[c].length; d++) {
-                    // console.log("Powónujemy " + parts[a][b] + " do " + parts[c][d]);
+                    //Comparing only parts that weren't compared yet
                     if (a !== c && a < c) {
-                        // console.log("Powónujemy " + parts[a][b] + " do " + parts[c][d]);
-                        // if (parts[a][b] === parts[c][d]) {
-                        //     console.log("Nakłada się tabela " + a + " element " + b + " z tabelą " + c + " elementem " + d);
-                        // }
+                        var endEdge = parts[a].length-1;
+                        if (parts[a][b] === parts[c][d] && !(parts[a][endEdge] === parts[c][0])) {
+                            // console.log("Nakłada się tabela " + a + " z tabelą " + c);
+                            row.push(c);
+                        }
                     }
                 }
             }
+            overlap[a] = row;
         }
     };
-}
+};
 
 compareArraysOfArray(parts);
+//console.log(overlap);
