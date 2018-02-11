@@ -57,3 +57,27 @@ function compareArraysOfArray(parts) {
 
 compareArraysOfArray(parts);
 //console.log(overlap);
+
+var flightOverlapsWith = [];
+var flightDoesNotOverlapWith = [];
+
+function clean (el)   {
+    for (var i = 0; i < el.length; i++) {
+        var row = [];
+        var row2 = [];
+            for (var k = 0; k < el.length; k++) { //7, sprawdż, czy na bank el
+                if (!(el[i].includes(k)) && i !== k && i < k) {
+                        row.push(k);
+                } else if (i !== k && i < k) {
+                        row2.push(k);
+                }
+            }
+
+        flightDoesNotOverlapWith[i] = row;
+        flightOverlapsWith[i] = row2;
+    }
+};
+
+clean(overlap);
+console.log(flightDoesNotOverlapWith);
+console.log(flightOverlapsWith);
