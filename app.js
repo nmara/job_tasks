@@ -15,10 +15,19 @@ var parts = [
 {'from': 2, 'to': 10},
 {'from': 1, 'to': 5},
 {'from': 5, 'to': 10},
-{'from': 7, 'to': 9}
+{'from': 9, 'to': 10}
 ];
 
-//Change objects to arrays of numbers, each starting from "from" and ending with "to".
+// var parts = [
+// {'from': 12345, 'to': 13455},
+// {'from': 12745, 'to': 13755},
+// {'from': 2345, 'to': 2755},
+// {'from': 5345, 'to': 9455},
+// {'from': 2700, 'to': 5240},
+// {'from': 345, 'to': 13455},
+// {'from': 11345, 'to': 13000}
+// ];
+// //Change objects to arrays of numbers, each starting from "from" and ending with "to".
 function objectsToArrays(object) {
     for (var i = 0; i < object.length; i++) {
         var newArray = [];
@@ -44,7 +53,6 @@ function compareArraysOfArray(parts) {
                     if (a !== c && a < c) {
                         var endEdge = parts[a].length-1;
                         if (parts[a][b] === parts[c][d] && !(parts[a][endEdge] === parts[c][0])) {
-                            // console.log("Nakłada się tabela " + a + " z tabelą " + c);
                             row.push(c);
                         }
                     }
@@ -79,5 +87,29 @@ function clean (el)   {
 };
 
 clean(overlap);
-console.log(flightDoesNotOverlapWith);
-console.log(flightOverlapsWith);
+
+planes = [];
+function howManyPlanes () {
+    var free = flightDoesNotOverlapWith;
+    planeCounter = 0;
+    for (var i = 0; i < free.length; i++) {
+        if(!(planes.includes(i))) {
+            planeCounter++;
+            planes.push("Plane will serve flights:")
+            planes.push(i);
+            for (var j = 0; j < free[i].length; j++) {
+                if(!(planes.includes(free[i][0]))) {
+                    planes.push(free[i][0]);
+                }
+                y = free[i][j];
+                if(free[y].includes(free[i][j+1]) && !(planes.includes(free[i][j+1]))) {
+                    planes.push(free[i][j+1]);
+                }
+            }
+        }
+    }
+};
+
+howManyPlanes();
+console.log(planes);
+console.log(planeCounter);
